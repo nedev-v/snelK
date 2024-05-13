@@ -15,7 +15,8 @@ class OrdersSeeder extends Seeder
     {
         $data = [
             [
-                'user_id' => 1, // Assuming user_id 1 exists
+                'user_id' => 1,
+                'product_id'=> 1,
                 'cup_size' => 12,
                 'is_decaf' => false,
                 'milk_flavour' => 'Regular',
@@ -25,7 +26,8 @@ class OrdersSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 2, // Assuming user_id 2 exists
+                'user_id' => 2,
+                'product_id'=> 3,
                 'cup_size' => 16,
                 'is_decaf' => true,
                 'milk_flavour' => 'Almond',
