@@ -10,6 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "products";
+    protected $fillable = ["price"];
+    public $timestamps = false;
 
     public function translations(){
         return $this->hasMany(ProductTranslation::class);
