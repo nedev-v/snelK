@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,6 @@ Route::patch('product/{id}', [ProductController::class, 'update']);
 Route::get('order/{id}', [OrderController::class, 'find']);
 Route::get('orders', [OrderController::class, 'allForUser']);
 Route::post('order', [OrderController::class, 'add']);
+
+Route::get('order/{order_id}/order-details', [OrderDetailController::class, 'allOfOrder']);
+Route::post('order-detail/create', [OrderDetailController::class, 'add']);
