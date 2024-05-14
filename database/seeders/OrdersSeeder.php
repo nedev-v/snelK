@@ -15,23 +15,15 @@ class OrdersSeeder extends Seeder
     {
         $data = [
             [
-                'user_id' => 1,
-                'product_id'=> 1,
-                'cup_size' => 12,
-                'is_decaf' => false,
-                'milk_flavour' => 'Regular',
-                'syrup_flavour' => 'Vanilla',
+                'user_id' => 1, // Assuming user_id 1 exists
+                'total_price' => 5.95,
                 'pickup_time' => '09:00',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 2,
-                'product_id'=> 3,
-                'cup_size' => 16,
-                'is_decaf' => true,
-                'milk_flavour' => 'Almond',
-                'syrup_flavour' => null,
+                'user_id' => 2, // Assuming user_id 2 exists
+                'total_price' => 7.50,
                 'pickup_time' => '10:30',
                 'created_at' => now(),
                 'updated_at' => now(),
