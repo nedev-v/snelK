@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => Hash::make('1234'), // You should hash the password
+            'is_admin' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

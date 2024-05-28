@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->double('price');
+            $table->boolean('has_milk');
+            $table->string('image_path');
         });
     }
 

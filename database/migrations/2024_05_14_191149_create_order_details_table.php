@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedInteger("cup_size");
+            $table->string("cup_size");
             $table->boolean('is_decaf');
             $table->string('milk_flavour', length: 100);
             $table->string('syrup_flavour', length: 100)->nullable();

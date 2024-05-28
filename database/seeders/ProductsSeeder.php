@@ -20,10 +20,26 @@ class ProductsSeeder extends Seeder
             3.50, // Cappuccino
             3.00, // Macchiato
         ];
+        $hasMilk = [
+            false, // Espresso
+            false, // Americano
+            true, // Caffè Latte
+            true, // Cappuccino
+            true, // Macchiato
+        ];
+        $imagePath = [
+            'espresso.jpg', // Espresso
+            'americano.jpg', // Americano
+            'latte.jpg', // Caffè Latte
+            'cappuccino.jpg', // Cappuccino
+            'macchiato.jpg', // Macchiato
+        ];
 
-        foreach ($prices as $price) {
+        for ($i = 0; $i <= 4; $i++) {
             DB::table('products')->insert([
-                'price' => $price
+                'price' => $prices[$i],
+                'has_milk' => $hasMilk[$i],
+                'image_path' => $imagePath[$i]
             ]);
         }
     }

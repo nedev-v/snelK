@@ -28,6 +28,7 @@ Route::get('products', [ProductController::class, 'all']);
 Route::get('product/{id}', [ProductController::class, 'find']);
 Route::post('product', [ProductController::class, 'add']);
 Route::patch('product/{id}', [ProductController::class, 'update']);
+Route::delete('product/{id}', [ProductController::class, 'delete']);
 
 Route::get('order/{id}', [OrderController::class, 'find']);
 Route::get('orders', [OrderController::class, 'allForUser']);
@@ -37,13 +38,12 @@ Route::get('order/{order_id}/order-details', [OrderDetailController::class, 'all
 Route::post('order-detail/create', [OrderDetailController::class, 'add']);
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api'],
     'prefix' => 'auth'
 ], function ($router) {
-
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
-
 });

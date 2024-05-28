@@ -10,7 +10,11 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "products";
-    protected $fillable = ["price"];
+    protected $fillable = ["price", "has_milk", "image_path"];
+
+    protected $casts = [
+        'has_milk' => 'boolean',
+    ];
     public $timestamps = false;
 
     public function translations(){
