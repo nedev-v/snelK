@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProductController extends Controller
 {
-    protected $service;
+    protected ProductService $service;
 
     public function __construct(ProductService $service)
     {
@@ -19,10 +19,10 @@ class ProductController extends Controller
 
     }
 
-    public function all(){
-        $products = $this->service->all();
+    public function all($language){
+        $products = $this->service->all($language);
         foreach ($products as $product) {
-            $product->image_path = asset("storage/images/{$product->image_path}");
+            $product->image_path = asset("storage/images/$product->image_path");
         }
 
         return response()->json($products);
@@ -33,10 +33,14 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product deleted successfully'], 200);
     }
 
-    public function find($id){
-        $product = $this->service->find($id);
-        $product->image_path = asset("storage/images/{$product->image_path}");
-        return response()->json($product);
+    public function find($language, $id){
+        $product = $this->service->find($id, $language);
+        if($product) {
+            $product->image_path = asset("storage/images/{$product->image_path}");
+            return response()->json($product);
+        }else{
+            return response()->json(['error' => 'Product is not found'], 404);
+        }
     }
 
     protected function getFileName($file){

@@ -27,14 +27,21 @@ class ProductService extends Service
         $this->modelLang = $modelLang;
     }
 
-    public function all()
+    public function all($language = null)
     {
-        return $this->model->with('translations')->get();
+        return $this->model->with(['translations' => function($query) use ($language) {
+            $query->where('language', $language);
+        }])->get();
     }
 
-    public function find($id)
+    public function find($id, $language = null)
     {
-        return $this->model->with('translations')->find($id);
+        Log::info("Language is $language");
+        return $this->model->where('id', $id)
+            ->with(['translations' => function($query) use ($language) {
+                $query->where('language', $language);
+            }])
+            ->first();
     }
 
     public function add($data, $img_name)
