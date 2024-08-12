@@ -19,11 +19,29 @@ class ProductController extends Controller
 
     }
 
-    public function all($language){
-        $products = $this->service->all($language);
+    public function allByLanguage(Request $request, $language){
+        $perPage = $request->input('per_page', 15);
+        $page = $request->input('page', 1);
+
+        $products = $this->service->allByLanguage($language, $perPage);
+
         foreach ($products as $product) {
             $product->image_path = asset("storage/images/$product->image_path");
         }
+
+        return response()->json($products);
+    }
+
+    public function all(Request $request)
+    {
+        $perPage = $request->input('per_page', 15); // Number of items per page
+
+        $products = $this->service->all($perPage);
+
+        $products->getCollection()->transform(function ($product) {
+            $product->image_path = asset("storage/images/{$product->image_path}");
+            return $product;
+        });
 
         return response()->json($products);
     }
@@ -33,14 +51,26 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product deleted successfully'], 200);
     }
 
-    public function find($language, $id){
-        $product = $this->service->find($id, $language);
+    public function findByLanguage($language, $id){
+        $product = $this->service->findByLanguage($id, $language);
         if($product) {
             $product->image_path = asset("storage/images/{$product->image_path}");
             return response()->json($product);
         }else{
             return response()->json(['error' => 'Product is not found'], 404);
         }
+    }
+
+    public function find($id)
+    {
+        $product = $this->service->findByLanguage($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+        $product->image_path = asset("storage/images/{$product->image_path}");
+
+        return response()->json($product);
     }
 
     protected function getFileName($file){

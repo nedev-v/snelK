@@ -5,6 +5,7 @@ namespace App\Modules\Products\Services;
 use App\Models\Product;
 use App\Models\ProductTranslation;
 use App\Modules\Core\Services\Service;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,20 +28,32 @@ class ProductService extends Service
         $this->modelLang = $modelLang;
     }
 
-    public function all($language = null)
+    public function allByLanguage($language = null, $perPage = 15)
     {
         return $this->model->with(['translations' => function($query) use ($language) {
             $query->where('language', $language);
-        }])->get();
+        }])->paginate($perPage);
     }
 
-    public function find($id, $language = null)
+    public function findByLanguage($id, $language = null)
     {
         Log::info("Language is $language");
         return $this->model->where('id', $id)
             ->with(['translations' => function($query) use ($language) {
                 $query->where('language', $language);
             }])
+            ->first();
+    }
+
+    public function all($perPage = 15)
+    {
+        return $this->model->with('translations')->paginate($perPage);
+    }
+
+    public function find($id)
+    {
+        return $this->model->where('id', $id)
+            ->with('translations')
             ->first();
     }
 
@@ -70,7 +83,17 @@ class ProductService extends Service
     }
 
     public function delete($id){
-        $this->model->findOrFail($id)->delete();
+        try {
+            $deleted = $this->model->findOrFail($id)->delete();
+
+            if ($deleted) {
+                return response()->json(['message' => 'Product deleted successfully.']);
+            } else {
+                return response()->json(['error' => 'Product could not be deleted.'], 500);
+            }
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Product not found.'], 404);
+        }
     }
 
     public function update($id, $data, $img_name = "")
