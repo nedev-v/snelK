@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TranslationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::get('product/{id}', [ProductController::class, 'find']);
 Route::post('product', [ProductController::class, 'add']);
 Route::patch('product/{id}', [ProductController::class, 'update']);
 Route::delete('product/{id}', [ProductController::class, 'delete']);
+
+Route::get('translations/{language}', [TranslationController::class, 'getTranslations']);
 
 Route::get('order/{id}', [OrderController::class, 'find']);
 Route::get('orders', [OrderController::class, 'allForUser']);

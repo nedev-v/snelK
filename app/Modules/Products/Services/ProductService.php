@@ -72,10 +72,10 @@ class ProductService extends Service
 
         foreach ($data['translations'] as $translation) {
             $productTranslation = $this->modelLang->create([
-                "language" => $translation['language'], // Corrected access
-                "title" => $translation['title'],       // Corrected access
-                "short_description" => $translation['short_description'], // Corrected access
-                "description" => $translation['description'], // Corrected access
+                "language" => $translation['language'],
+                "title" => $translation['title'],
+                "short_description" => $translation['short_description'],
+                "description" => $translation['description'],
                 "product_id" => $product->id,
             ]);
         }
@@ -84,15 +84,9 @@ class ProductService extends Service
 
     public function delete($id){
         try {
-            $deleted = $this->model->findOrFail($id)->delete();
-
-            if ($deleted) {
-                return response()->json(['message' => 'Product deleted successfully.']);
-            } else {
-                return response()->json(['error' => 'Product could not be deleted.'], 500);
-            }
+            return $this->model->findOrFail($id)->delete();
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Product not found.'], 404);
+            return false;
         }
     }
 

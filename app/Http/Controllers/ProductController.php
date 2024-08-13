@@ -47,8 +47,12 @@ class ProductController extends Controller
     }
 
     public function delete($id){
-        $this->service->delete($id);
-        return response()->json(['message' => 'Product deleted successfully'], 200);
+        $deleted = $this->service->delete($id);
+        if ($deleted) {
+            return response()->json(['message' => 'Product deleted successfully.']);
+        } else {
+            return response()->json(['error' => 'Product could not be deleted.'], 500);
+        }
     }
 
     public function findByLanguage($language, $id){
