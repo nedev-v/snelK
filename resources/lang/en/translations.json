@@ -1,0 +1,58 @@
+{
+    "coffee_item_btn": "Take a look",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "admin_panel": "Admin panel",
+    "email": "Email",
+    "password": "Password",
+    "choose_beverage": "Choose your beverage",
+    "name": "Name",
+    "auth_error": "Something went wrong. Please try again.",
+    "auth_invalid_login": "Invalid credentials provided.",
+    "404_msg": "404. This link is not found or doesn't exist :(",
+    "order": "Order",
+    "order_time": "When do you want to pick up your order?",
+    "order_finish": "Finish your order",
+    "order_empty": "There is nothing here yet. Please come back when you add a product to your cart.",
+    "yes": "Yes",
+    "no": "No",
+    "your_order": "Your order",
+    "order_preferences": {
+        "title": "Title",
+        "cup_size": "Cup size",
+        "milk": "Milk",
+        "syrup": "Syrup",
+        "is_decaf": "Is decaf?",
+        "price": "Price",
+        "delete": "Delete?"
+    },
+    "order_modal": {
+        "title": "Customize your order",
+        "cupSizeLabel": "1. Choose a size of the drink:",
+        "decafLabel": "2. Should it be caffeine-free?",
+        "milkFlavourLabel": "3. Choose type of milk:",
+        "syrupFlavourLabel": "4. Choose syrup flavour:",
+        "addToCartButton": "Add to my cart!",
+        "options": {
+            "cupSize": {
+                "petite": "Petite",
+                "medium": "Medium",
+                "grande": "Grande"
+            },
+            "milkFlavour": {
+                "regular": "Regular milk",
+                "banana": "Banana flavour (soya milk)",
+                "coconut": "Coconut flavour (soya milk)",
+                "chocolate": "Chocolate flavour (soya milk)"
+            },
+            "syrupFlavour": {
+                "none": "None",
+                "vanilla": "Vanilla",
+                "caramel": "Caramel",
+                "hazelnut": "Hazelnut",
+                "peppermint": "Peppermint"
+            }
+        }
+    }
+}

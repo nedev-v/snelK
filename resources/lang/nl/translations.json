@@ -1,0 +1,58 @@
+{
+    "coffee_item_btn": "Bekijk het",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "logout": "Uitloggen",
+    "admin_panel": "Beheerderspaneel",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "choose_beverage": "Kies je drank",
+    "name": "Naam",
+    "auth_error": "Er is iets fout gegaan. Probeer het opnieuw.",
+    "auth_invalid_login": "Ongeldige inloggegevens verstrekt.",
+    "404_msg": "404. Deze link is niet gevonden of bestaat niet :(",
+    "order": "Bestelling",
+    "order_time": "Wanneer wil je je bestelling ophalen?",
+    "order_finish": "Maak je bestelling af",
+    "order_empty": "Er is hier nog niets. Kom terug als je een product aan je winkelwagentje hebt toegevoegd.",
+    "yes": "Ja",
+    "no": "Nee",
+    "your_order": "Jouw bestelling",
+    "order_preferences": {
+        "title": "Titel",
+        "cup_size": "Kopmaat",
+        "milk": "Melk",
+        "syrup": "Siroop",
+        "is_decaf": "Is cafeïnevrij?",
+        "price": "Prijs",
+        "delete": "Verwijderen?"
+    },
+    "order_modal": {
+        "title": "Pas je bestelling aan",
+        "cupSizeLabel": "1. Kies een maat van de drank:",
+        "decafLabel": "2. Moet het cafeïnevrij zijn?",
+        "milkFlavourLabel": "3. Kies het type melk:",
+        "syrupFlavourLabel": "4. Kies de siroopsmaak:",
+        "addToCartButton": "Voeg toe aan mijn winkelwagentje!",
+        "options": {
+            "cupSize": {
+                "petite": "Petite",
+                "medium": "Medium",
+                "grande": "Grande"
+            },
+            "milkFlavour": {
+                "regular": "Reguliere melk",
+                "banana": "Banaan smaak (sojamelk)",
+                "coconut": "Kokosnoot smaak (sojamelk)",
+                "chocolate": "Chocolade smaak (sojamelk)"
+            },
+            "syrupFlavour": {
+                "none": "Geen",
+                "vanilla": "Vanille",
+                "caramel": "Caramel",
+                "hazelnut": "Hazelnoot",
+                "peppermint": "Pepermunt"
+            }
+        }
+    }
+}
