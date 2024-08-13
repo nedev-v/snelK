@@ -63,7 +63,7 @@ class ProductController extends Controller
 
     public function find($id)
     {
-        $product = $this->service->findByLanguage($id);
+        $product = $this->service->find($id);
 
         if (!$product) {
             return response()->json(['error' => 'Product not found'], 404);
