@@ -11,6 +11,8 @@
     "auth_error": "Something went wrong. Please try again.",
     "auth_invalid_login": "Invalid credentials provided.",
     "404_msg": "404. This link is not found or doesn't exist :(",
+    "add_order": "Add to order!",
+    "description": "Description",
     "order": "Order",
     "order_time": "When do you want to pick up your order?",
     "order_finish": "Finish your order",
@@ -54,5 +56,12 @@
                 "peppermint": "Peppermint"
             }
         }
+    },
+    "admin":{
+        "view": "View Products",
+        "add": "Add product",
+        "home": "Back to home",
+        "edit":  "Edit",
+        "range": "Products Range"
     }
 }

@@ -19,24 +19,16 @@ class ProductController extends Controller
 
     }
 
-    public function allByLanguage(Request $request, $language){
-        $perPage = $request->input('per_page', 15);
-        $page = $request->input('page', 1);
-
-        $products = $this->service->allByLanguage($language, $perPage);
-
-        foreach ($products as $product) {
-            $product->image_path = asset("storage/images/$product->image_path");
-        }
-
-        return response()->json($products);
-    }
 
     public function all(Request $request)
     {
-        $perPage = $request->input('per_page', 15); // Number of items per page
+        $perPage = $request->input('per_page', 15);
+        $lang = $request->input('lang');
+        $hasMilk = $request->input('has_milk');
+        $price = (int) $request->input('price');
+        $orderBy = $request->input('order_by');
 
-        $products = $this->service->all($perPage);
+        $products = $this->service->all($lang, $price, $orderBy, $hasMilk, $perPage);
 
         $products->getCollection()->transform(function ($product) {
             $product->image_path = asset("storage/images/{$product->image_path}");
@@ -55,19 +47,11 @@ class ProductController extends Controller
         }
     }
 
-    public function findByLanguage($language, $id){
-        $product = $this->service->findByLanguage($id, $language);
-        if($product) {
-            $product->image_path = asset("storage/images/{$product->image_path}");
-            return response()->json($product);
-        }else{
-            return response()->json(['error' => 'Product is not found'], 404);
-        }
-    }
-
-    public function find($id)
+    public function find(Request $request, $id)
     {
-        $product = $this->service->find($id);
+        $lang = $request->input('lang');
+
+        $product = $this->service->find($id, $lang);
 
         if (!$product) {
             return response()->json(['error' => 'Product not found'], 404);

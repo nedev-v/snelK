@@ -28,33 +28,38 @@ class ProductService extends Service
         $this->modelLang = $modelLang;
     }
 
-    public function allByLanguage($language = null, $perPage = 15)
+
+    public function all($lang = null, $price = 0, $orderBy = 'asc', $hasMilk = null, $perPage = 15)
     {
-        return $this->model->with(['translations' => function($query) use ($language) {
-            $query->where('language', $language);
-        }])->paginate($perPage);
+        $data = $this->model->where('price', '>', $price);
+
+        if ($lang) {
+            $data->join('products_language', 'products.id', '=', 'products_language.product_id')
+                ->where('products_language.language', $lang)
+                ->orderBy('products_language.title', $orderBy);
+        } else {
+            $data->with('translations');
+        }
+
+        if(!is_null($hasMilk)){
+            $hasMilk = filter_var($hasMilk,FILTER_VALIDATE_BOOLEAN);
+            $data->where('has_milk', $hasMilk);
+        }
+        return $data->paginate($perPage);
     }
 
-    public function findByLanguage($id, $language = null)
+    public function find($id, $lang = null)
     {
-        Log::info("Language is $language");
-        return $this->model->where('id', $id)
-            ->with(['translations' => function($query) use ($language) {
-                $query->where('language', $language);
-            }])
-            ->first();
-    }
+        $query = $this->model->where('products.id', $id);
 
-    public function all($perPage = 15)
-    {
-        return $this->model->with('translations')->paginate($perPage);
-    }
-
-    public function find($id)
-    {
-        return $this->model->where('id', $id)
-            ->with('translations')
-            ->first();
+        if ($lang) {
+            $query->join('products_language', 'products.id', '=', 'products_language.product_id')
+                ->where('products_language.language', $lang)
+                ->select('products.*', 'products_language.title', 'products_language.short_description', 'products_language.description');
+        } else {
+            $query->with('translations');
+        }
+        return $query->first();
     }
 
     public function add($data, $img_name)

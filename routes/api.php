@@ -23,9 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('{language}/products', [ProductController::class, 'allByLanguage']);
 Route::get('products', [ProductController::class, 'all']);
-Route::get('{language}/product/{id}', [ProductController::class, 'findByLanguage']);
 Route::get('product/{id}', [ProductController::class, 'find']);
 Route::post('product', [ProductController::class, 'add']);
 Route::patch('product/{id}', [ProductController::class, 'update']);

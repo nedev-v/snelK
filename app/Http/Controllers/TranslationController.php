@@ -19,7 +19,7 @@ class TranslationController extends Controller
         if($translations) {
             return response()->json($translations, 200);
         }else{
-            return response()->json($this->service->getErrors());
+            return response()->json($this->service->getErrors(), 404);
         }
     }
 }

@@ -10,6 +10,8 @@
     "name": "Naam",
     "auth_error": "Er is iets fout gegaan. Probeer het opnieuw.",
     "auth_invalid_login": "Ongeldige inloggegevens verstrekt.",
+    "add_order": "Toevoegen aan bestelling!",
+    "description": "Beschrijving",
     "404_msg": "404. Deze link is niet gevonden of bestaat niet :(",
     "order": "Bestelling",
     "order_time": "Wanneer wil je je bestelling ophalen?",
@@ -54,5 +56,12 @@
                 "peppermint": "Pepermunt"
             }
         }
+    },
+    "admin": {
+        "view": "Bekijk Producten",
+        "add": "Voeg product toe",
+        "home": "Terug naar home",
+        "edit": "Bewerken",
+        "range": "Productassortiment"
     }
 }
