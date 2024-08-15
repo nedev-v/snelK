@@ -29,13 +29,14 @@ class ProductService extends Service
     }
 
 
-    public function all($lang = null, $price = 0, $orderBy = 'asc', $hasMilk = null, $perPage = 15)
+    public function all($lang = null, $price = 0, $orderBy = "asc", $hasMilk = null, $perPage = 15)
     {
         $data = $this->model->where('price', '>', $price);
 
         if ($lang) {
             $data->join('products_language', 'products.id', '=', 'products_language.product_id')
                 ->where('products_language.language', $lang)
+                ->select('products.*', 'products_language.language', 'products_language.title', 'products_language.short_description', 'products_language.description')
                 ->orderBy('products_language.title', $orderBy);
         } else {
             $data->with('translations');
@@ -55,7 +56,7 @@ class ProductService extends Service
         if ($lang) {
             $query->join('products_language', 'products.id', '=', 'products_language.product_id')
                 ->where('products_language.language', $lang)
-                ->select('products.*', 'products_language.title', 'products_language.short_description', 'products_language.description');
+                ->select('products.*', 'products_language.language', 'products_language.title', 'products_language.short_description', 'products_language.description');
         } else {
             $query->with('translations');
         }
